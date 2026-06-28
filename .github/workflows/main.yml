@@ -7,7 +7,7 @@ jobs:
       matrix:
         project: [hotelsilvercloud]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
