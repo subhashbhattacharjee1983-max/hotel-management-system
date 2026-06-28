@@ -12,6 +12,6 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           server: netlinkgroup.store
-          user: ${{ secrets.SFTP_USERNAME }}
+          username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           remote_path: /var/www/html/${{ matrix.project }}
