@@ -1,17 +1,30 @@
-on: [push]
+name: Deploy via SFTP
+
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        project: [hotelsilvercloud]
+        project:
+          - hotelsilvercloud
+
     steps:
-      - uses: actions/checkout@v5
-      - name: SFTP Deploy
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Deploy Files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           server: netlinkgroup.store
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          remote_path: /var/www/html/${{ matrix.project }}
+          port: 22
+          local_path: "./"
+          remote_path: "/var/www/html/${{ matrix.project }}"
+          sftp_only: true
